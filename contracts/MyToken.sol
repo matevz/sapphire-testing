@@ -69,11 +69,7 @@ contract MyTokenLuminex is ERC20, Ownable {
     Ownable(msg.sender)
     {
         wrose = new WROSE();
-        swapRouter = new LuminexRouterV1(address(0), address(wrose));
-    }
-
-    function proxyPassExt(address token, uint256 amount, bytes memory encodedParams) external payable {
-        return proxyPass(token, amount, encodedParams);
+        swapRouter = new LuminexRouterV1(address(0), address(0xeC240a739D04188D83E9125CECC2ea88fABd9B08));
     }
 
     function updateRingKey() external {
@@ -104,7 +100,8 @@ contract MyTokenLuminex is ERC20, Ownable {
 
         bytes32 nonce = _computeNonce(_ringKeyIndex);
 
-        output = Sapphire.decrypt(_ringKeys[_ringKeyIndex], nonce, _encryptedData, "ILLUMINEX_V1");
+        output = abi.encode(bytes("dummy_header"), new bytes[](3));
+//        output = Sapphire.decrypt(_ringKeys[_ringKeyIndex], nonce, _encryptedData, "ILLUMINEX_V1");
         ringKeyIndex = _ringKeyIndex;
     }
 

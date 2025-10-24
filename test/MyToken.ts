@@ -73,6 +73,6 @@ describe('MyToken', function () {
     })).wait()
     expect(receipt?.status).to.equal(1)
     // Mint a new token and send it to me (the signer)
-    //await myToken.proxyPassExt("0x1234567890123456789012345678901234567890", 100, ethers.toUtf8Bytes("abc"))
+    //await myToken.proxyPass("0x1234567890123456789012345678901234567890", 100, ethers.toUtf8Bytes("abc"))
   })
 })
